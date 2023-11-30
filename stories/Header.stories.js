@@ -1,11 +1,10 @@
-import { localStorageForStorybook, withLocalStorage } from '../dist/esm';
+import { localStorageForStorybook } from '../dist/esm';
 
 import { Header } from './Header';
 
 const meta = {
   title: 'Header',
   component: Header,
-  decorators: [withLocalStorage],
 };
 
 export default meta;

@@ -50,7 +50,7 @@ export const Header = () => {
 You can write a story as
 
 ```tsx
-import { withLocalStorage, localStorageForStorybook } from '@alexgorbatchev/storybook-addon-localstorage';
+import { localStorageForStorybook } from '@alexgorbatchev/storybook-addon-localstorage';
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
 import { Header } from './Header';
@@ -60,7 +60,6 @@ type Story = ComponentStoryObj<typeof Header>;
 const meta: ComponentMeta<typeof Header> = {
   title: 'Header',
   component: Header,
-  decorators: [withLocalStorage],
 };
 
 export default meta;
@@ -93,7 +92,7 @@ Strongly typed example:
 
 ```tsx
 import { ComponentMeta, ComponentStoryObj } from '@alexgorbatchev/storybook-parameters';
-import { LocalStorageParameters, withLocalStorage } from '@alexgorbatchev/storybook-addon-localstorage';
+import { LocalStorageParameters } from '@alexgorbatchev/storybook-addon-localstorage';
 
 interface StoryParameters extends LocalStorageParameters {}
 
@@ -104,7 +103,6 @@ type Story = ComponentStoryObj<typeof Header, StoryParameters>;
 const meta: ComponentMeta<typeof Header, StoryParameters> = {
   title: 'Header',
   component: Header,
-  decorators: [withLocalStorage],
 };
 
 export default meta;
