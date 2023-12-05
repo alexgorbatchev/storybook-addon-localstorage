@@ -10,7 +10,7 @@ interface PanelContentProps {
   currentValues: LocalStorageRecord;
 }
 
-const toString = (value: LocalStorageRecord) => {
+const toString = (value: LocalStorageRecord = {}) => {
   const results: Record<string, any> = {};
 
   Object.entries(value).forEach(([key, value]) => {
@@ -24,26 +24,12 @@ const toString = (value: LocalStorageRecord) => {
   return JSON.stringify(results, null, 2);
 };
 
-export const PanelContent: React.FC<PanelContentProps> = ({
-  initialValues,
-  currentValues,
-}) => (
-  <TabsState
-    initial="initialValues"
-    backgroundColor={convert(themes.normal).background.hoverable}
-  >
-    <div
-      id="initialValues"
-      title="Initial Values"
-      color={convert(themes.normal).color.purple}
-    >
+export const PanelContent = ({ initialValues, currentValues }: PanelContentProps) => (
+  <TabsState initial="initialValues" backgroundColor={convert(themes.normal).background.hoverable}>
+    <div id="initialValues" title="Initial Values" color={convert(themes.normal).color.purple}>
       <pre>{toString(initialValues)}</pre>
     </div>
-    <div
-      id="currentValues"
-      title="Current Values"
-      color={convert(themes.normal).color.green}
-    >
+    <div id="currentValues" title="Current Values" color={convert(themes.normal).color.green}>
       <pre>{toString(currentValues)}</pre>
     </div>
   </TabsState>

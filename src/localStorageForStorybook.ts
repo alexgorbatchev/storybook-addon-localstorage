@@ -1,5 +1,3 @@
-import { LocalStorageRecord } from './types';
-
 export const localStorageForStorybook = (params: Record<string, unknown>) => {
   const results: Record<string, string> = {};
 

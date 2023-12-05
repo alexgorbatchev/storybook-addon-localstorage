@@ -29,4 +29,4 @@ export const JaneLoggedIn = {
   },
 };
 
-export const LoggedOut = {};
+export const ParametersNotSet = {};

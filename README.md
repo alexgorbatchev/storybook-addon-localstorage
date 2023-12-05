@@ -21,6 +21,16 @@ module.exports = {
 };
 ```
 
+## Important
+
+* If `parameters.localStorage` is set, `localStorage.clear()` will be called before
+  populating the values.
+* The values passed into `parameters.localStorage` **must be strings** because `localStorage`
+  only works with strings. You can use `JSON.stringify` or there's a helper function provided by the addon
+  called `localStorageForStorybook`.
+* Finally, it's important to note that the addon works by polling and diffing mocked values
+  in `localStorage` every 100ms.
+
 ## Usage
 
 Given a simple component:

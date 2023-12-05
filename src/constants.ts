@@ -1,8 +1,10 @@
-export const ADDON_ID = 'storybook/localStorage-addon';
+export const ADDON_ID = '@alexgorbatchev/localStorage';
 export const PANEL_ID = `${ADDON_ID}/panel`;
-export const PARAM_KEY = 'localStorage';
 
 export const EVENTS = {
-  LOCAL_STORAGE_CHANGED: `${ADDON_ID}/localStorage_changed`,
-  RENDERED: `${ADDON_ID}/rendered`,
+  SET_CURRENT_VALUES: `${ADDON_ID}/set_current_values`,
+  SET_INITIAL_VALUES: `${ADDON_ID}/set_initial_values`,
 } as const;
+
+// can't use a Symbol here because values are passed around via postMessage
+export const NOTE = '_________note****';

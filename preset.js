@@ -10,7 +10,7 @@ module.exports = {
   managerEntries,
 
   // SB 7.x
-  previewAnnotations,
+  // previewAnnotations,
 
   // SB 6.x
   config: previewAnnotations,

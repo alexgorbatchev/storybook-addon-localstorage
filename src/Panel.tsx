@@ -4,7 +4,7 @@ import { useChannel } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
 
 import { PanelContent } from './components/PanelContent';
-import { EVENTS } from './constants';
+import { EVENTS, NOTE } from './constants';
 import { LocalStorageRecord } from './types';
 
 interface PanelProps {
@@ -13,25 +13,24 @@ interface PanelProps {
 }
 
 export const Panel: React.FC<PanelProps> = (props) => {
-  const [currentValues, setCurrentValues] = useState<LocalStorageRecord>({});
-  const [initialValues, setInitialValues] = useState<LocalStorageRecord>({});
+  const [currentValues, setCurrentValues] = useState<LocalStorageRecord>();
+  const [initialValues, setInitialValues] = useState<LocalStorageRecord>();
+  const note = initialValues && initialValues[NOTE];
 
   useChannel({
-    [EVENTS.RENDERED]: (values) => {
+    [EVENTS.SET_INITIAL_VALUES]: (values) => {
       setInitialValues(values);
       setCurrentValues(values);
     },
-    [EVENTS.LOCAL_STORAGE_CHANGED]: (values) => {
+    [EVENTS.SET_CURRENT_VALUES]: (values) => {
       setCurrentValues(values);
     },
   });
 
   return (
     <AddonPanel {...props}>
-      <PanelContent
-        currentValues={currentValues}
-        initialValues={initialValues}
-      />
+      {note && <code style={{ padding: '1em' }}>{note}</code>}
+      {!note && <PanelContent currentValues={currentValues} initialValues={initialValues} />}
     </AddonPanel>
   );
 };
