@@ -1,15 +1,18 @@
-import { localStorageForStorybook } from '../dist/esm';
+import { Meta, StoryObj } from '@storybook/react';
 
+import { localStorageForStorybook } from '../src/localStorageForStorybook';
 import { Header } from './Header';
 
-const meta = {
-  title: 'Header',
+const meta: Meta<typeof Header> = {
+  title: 'Example/Header',
   component: Header,
 };
 
 export default meta;
 
-export const JohnLoggedIn = {
+type Story = StoryObj<typeof Header>;
+
+export const JohnLoggedIn: Story = {
   parameters: {
     // this helper automatically stringifies the values using `JSON.stringify`
     localStorage: localStorageForStorybook({
@@ -19,7 +22,7 @@ export const JohnLoggedIn = {
   },
 };
 
-export const JaneLoggedIn = {
+export const JaneLoggedIn: Story = {
   parameters: {
     // if you have own serialzer, you can use it as well
     localStorage: {
@@ -29,4 +32,4 @@ export const JaneLoggedIn = {
   },
 };
 
-export const ParametersNotSet = {};
+export const ParametersNotSet: Story = {};

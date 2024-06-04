@@ -1,6 +1,6 @@
 # Storybook LocalStorage Addon
 
-A [Storybook](https://storybook.js.org/) Addon and Decorator for [`window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and track the state in a Panel.
+A [Storybook](https://storybook.js.org/) v8 addon and decorator for mocking and displaying current values of the [`window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) in a Storybook panel
 
 If you want to setup `parameters` to be strongly typed, see [@alexgorbatchev/storybook-parameters](https://github.com/alexgorbatchev/storybook-parameters).
 
@@ -9,13 +9,13 @@ If you want to setup `parameters` to be strongly typed, see [@alexgorbatchev/sto
 ## Install
 
 ```sh
-yarn add -D @alexgorbatchev/storybook-addon-localstorage
+npm i --save-dev @alexgorbatchev/storybook-addon-localstorage
 ```
 
 Register the addon in `.storybook/main.js`
 
 ```ts
-module.exports = {
+export default {
   stories: ['../stories/**/*.stories.tsx'],
   addons: ['@alexgorbatchev/storybook-addon-localstorage'],
 };
@@ -23,12 +23,12 @@ module.exports = {
 
 ## Important
 
-* If `parameters.localStorage` is set, `localStorage.clear()` will be called before
+- If `parameters.localStorage` is set, `localStorage.clear()` will be called before
   populating the values.
-* The values passed into `parameters.localStorage` **must be strings** because `localStorage`
+- The values passed into `parameters.localStorage` **must be strings** because `localStorage`
   only works with strings. You can use `JSON.stringify` or there's a helper function provided by the addon
   called `localStorageForStorybook`.
-* Finally, it's important to note that the addon works by polling and diffing mocked values
+- Finally, it's important to note that the addon works by polling and diffing mocked values
   in `localStorage` every 100ms.
 
 ## Usage
@@ -49,7 +49,7 @@ export const Header = () => {
       ) : (
         <div>
           <div>No one is signed in</div>
-          <Button size="small" label="Log in" onClick={() => setUser({ name: 'John' })}/>
+          <Button size="small" label="Log in" onClick={() => setUser({ name: 'John' })} />
         </div>
       )}
     </div>
@@ -61,18 +61,18 @@ You can write a story as
 
 ```tsx
 import { localStorageForStorybook } from '@alexgorbatchev/storybook-addon-localstorage';
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { Header } from './Header';
 
-type Story = ComponentStoryObj<typeof Header>;
-
-const meta: ComponentMeta<typeof Header> = {
-  title: 'Header',
+const meta: Meta<typeof Header> = {
+  title: 'Example/Header',
   component: Header,
 };
 
 export default meta;
+
+type Story = StoryObj<typeof Header>;
 
 export const JohnLoggedIn: Story = {
   parameters: {
@@ -93,41 +93,36 @@ export const JaneLoggedIn: Story = {
     },
   },
 };
-
-export const LoggedOut: Story = {};
-
 ```
 
 Strongly typed example:
 
 ```tsx
-import { ComponentMeta, ComponentStoryObj } from '@alexgorbatchev/storybook-parameters';
+import { Meta, StoryObj } from '@alexgorbatchev/storybook-parameters';
 import { LocalStorageParameters } from '@alexgorbatchev/storybook-addon-localstorage';
 
 interface StoryParameters extends LocalStorageParameters {}
 
-const Header = () => <div>Header</div>;
-
-type Story = ComponentStoryObj<typeof Header, StoryParameters>;
-
-const meta: ComponentMeta<typeof Header, StoryParameters> = {
+const meta: Meta<typeof Header, StoryParameters> = {
   title: 'Header',
   component: Header,
 };
 
 export default meta;
 
+type Story = StoryObj<typeof Header, StoryParameters>;
+
 export const JohnLoggedIn: Story = {
   parameters: {
-    // `localStorage` is strongly typed
+    // `localStorage` will show up in `Parameters`
     localStorage: {
       key: 'value',
-    }
+    },
   },
 };
 ```
 
-### Development scripts
+## Development Scripts
 
-- `yarn start` runs babel in watch mode and starts Storybook
-- `yarn build` build and package your addon code
+- `npm run storybook` starts Storybook
+- `tsup` build `./dist`

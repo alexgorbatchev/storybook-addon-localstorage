@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-import { addons, makeDecorator } from '@storybook/addons';
+import { addons, makeDecorator } from '@storybook/preview-api';
 
 import { EVENTS, NOTE } from './constants';
-import { LocalStorageRecord } from './types';
+import type { LocalStorageRecord } from './types';
 
-interface CommonProps {
+type Props = {
   children: React.ReactElement;
   parameters: LocalStorageRecord;
-}
+};
 
-const StorybookAddonLocalStorageInContext = ({ parameters, children }: CommonProps) => {
+const StorybookAddonLocalStorage = ({ parameters, children }: Props) => {
   const channel = addons.getChannel();
   const [ready, setReady] = useState(false);
 
@@ -59,18 +59,13 @@ const StorybookAddonLocalStorageInContext = ({ parameters, children }: CommonPro
 
   channel.emit(EVENTS.SET_INITIAL_VALUES, { ...parameters });
 
-  if (ready) return children;
-};
-
-const StorybookAddonLocalStorage = (props: CommonProps) => {
-  return <StorybookAddonLocalStorageInContext {...props} />;
+  return ready ? children : null;
 };
 
 export const withLocalStorage = makeDecorator({
   name: 'withLocalStorage',
   parameterName: 'localStorage',
-  skipIfNoParametersOrOptions: false,
-  wrapper: (storyFn, context, { parameters }) => {
-    return <StorybookAddonLocalStorage parameters={parameters}>{storyFn(context) as any}</StorybookAddonLocalStorage>;
-  },
+  wrapper: (getStory, context, { parameters }) => (
+    <StorybookAddonLocalStorage parameters={parameters}>{getStory(context) as any}</StorybookAddonLocalStorage>
+  ),
 });

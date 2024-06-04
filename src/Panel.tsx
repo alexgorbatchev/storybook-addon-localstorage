@@ -1,18 +1,46 @@
 import React, { useState } from 'react';
 
-import { useChannel } from '@storybook/api';
-import { AddonPanel } from '@storybook/components';
+import { TabsState } from '@storybook/components';
+import { useChannel } from '@storybook/manager-api';
 
-import { PanelContent } from './components/PanelContent';
 import { EVENTS, NOTE } from './constants';
 import { LocalStorageRecord } from './types';
 
-interface PanelProps {
-  active: boolean;
-  key: string;
-}
+type PanelProps = {
+  active?: boolean;
+};
 
-export const Panel: React.FC<PanelProps> = (props) => {
+type PanelContentProps = {
+  initialValues?: LocalStorageRecord;
+  currentValues?: LocalStorageRecord;
+};
+
+const toString = (value: LocalStorageRecord = {}) => {
+  const results: Record<string, any> = {};
+
+  Object.entries(value).forEach(([key, value]) => {
+    try {
+      results[key] = JSON.parse(value as any);
+    } catch {
+      results[key] = value;
+    }
+  });
+
+  return JSON.stringify(results, null, 2);
+};
+
+const PanelContent: React.FC<PanelContentProps> = ({ initialValues, currentValues }) => (
+  <TabsState initial="initialValues">
+    <div id="initialValues" title="Initial Values">
+      <pre>{toString(initialValues)}</pre>
+    </div>
+    <div id="currentValues" title="Current Values">
+      <pre>{toString(currentValues)}</pre>
+    </div>
+  </TabsState>
+);
+
+export const Panel: React.FC<PanelProps> = ({ active }) => {
   const [currentValues, setCurrentValues] = useState<LocalStorageRecord>();
   const [initialValues, setInitialValues] = useState<LocalStorageRecord>();
   const note = initialValues && initialValues[NOTE];
@@ -27,10 +55,12 @@ export const Panel: React.FC<PanelProps> = (props) => {
     },
   });
 
+  if (!active) return null;
+
   return (
-    <AddonPanel {...props}>
+    <>
       {note && <code style={{ padding: '1em' }}>{note}</code>}
       {!note && <PanelContent currentValues={currentValues} initialValues={initialValues} />}
-    </AddonPanel>
+    </>
   );
 };

@@ -5,8 +5,10 @@ import useLocalStorage from 'use-local-storage-state';
 import { Button } from './Button';
 import './header.css';
 
+type User = { name: string };
+
 export const Header = () => {
-  const [user, setUser, { removeItem }] = useLocalStorage('user');
+  const [user, setUser, { removeItem }] = useLocalStorage<User>('user');
 
   return (
     <header>
