@@ -18,18 +18,18 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.mts",
       "node": "./dist/index.mjs",
       "require": "./dist/index.mjs",
       "import": "./dist/index.mjs"
     },
     "./decorator": {
-      "types": "./dist/decorator.d.ts",
+      "types": "./dist/decorator.d.mts",
       "require": "./dist/decorator.mjs",
       "import": "./dist/decorator.mjs"
     },
     "./preview": {
-      "types": "./dist/preview.d.ts",
+      "types": "./dist/preview.d.mts",
       "require": "./dist/preview.mjs",
       "import": "./dist/preview.mjs"
     },
@@ -39,17 +39,7 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/index.d.ts"
-      ],
-      "decorator": [
-        "dist/decorator.d.ts"
-      ]
-    }
-  },
+  "types": "dist/index.d.mts",
   "files": [
     "dist/**/*",
     "README.md",
