@@ -19,18 +19,17 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
-      "node": "./dist/index.mjs",
-      "require": "./dist/index.mjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
     "./decorator": {
       "types": "./dist/decorator.d.mts",
-      "require": "./dist/decorator.mjs",
+      "require": "./dist/decorator.js",
       "import": "./dist/decorator.mjs"
     },
     "./preview": {
       "types": "./dist/preview.d.mts",
-      "require": "./dist/preview.mjs",
+      "require": "./dist/preview.js",
       "import": "./dist/preview.mjs"
     },
     "./manager": "./dist/manager.mjs",
