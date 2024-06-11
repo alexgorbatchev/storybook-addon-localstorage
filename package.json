@@ -1,6 +1,6 @@
 {
   "name": "@alexgorbatchev/storybook-addon-localstorage",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A Storybook v8 addong for mocking and displaying `localStorage` values",
   "keywords": [
     "storybook-addons",
