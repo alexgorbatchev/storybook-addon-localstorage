@@ -16,29 +16,33 @@
     "Alex Gorbatchev <alex.gorbatchev@gmail.com>"
   ],
   "license": "MIT",
+  "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
-    "./decorator": {
-      "types": "./dist/decorator.d.mts",
-      "require": "./dist/decorator.js",
-      "import": "./dist/decorator.mjs"
+    "./preset": {
+      "import": {
+        "types": "./dist/preset.d.ts",
+        "default": "./dist/preset.js"
+      },
+      "require": {
+        "types": "./dist/preset.d.cts",
+        "default": "./dist/preset.cjs"
+      }
     },
-    "./preview": {
-      "types": "./dist/preview.d.mts",
-      "require": "./dist/preview.js",
-      "import": "./dist/preview.mjs"
-    },
-    "./manager": "./dist/manager.mjs",
-    "./preset": "./dist/preset.js",
     "./package.json": "./package.json"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.mts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
     "README.md",
