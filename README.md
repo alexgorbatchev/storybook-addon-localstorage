@@ -12,7 +12,7 @@ If you want to setup `parameters` to be strongly typed, see [@alexgorbatchev/sto
 npm i --save-dev @alexgorbatchev/storybook-addon-localstorage
 ```
 
-Register the addon in `.storybook/main.js`
+Register the addon in `.storybook/main.ts`
 
 ```ts
 export default {
