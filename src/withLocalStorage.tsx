@@ -10,7 +10,7 @@ type Props = {
   parameters: LocalStorageRecord;
 };
 
-const StorybookAddonLocalStorage = ({ parameters, children }: Props) => {
+export const StorybookAddonLocalStorage = ({ parameters, children }: Props) => {
   const channel = addons.getChannel();
   const [ready, setReady] = useState(false);
 
