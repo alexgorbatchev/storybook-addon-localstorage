@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { TabsState } from '@storybook/components';
-import { useChannel } from '@storybook/manager-api';
+import { TabsState } from 'storybook/internal/components';
+import { useChannel } from 'storybook/manager-api';
 
 import { EVENTS, NOTE } from './constants';
 import { LocalStorageRecord } from './types';

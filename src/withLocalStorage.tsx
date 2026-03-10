@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { addons, makeDecorator } from '@storybook/preview-api';
+import { addons, makeDecorator } from 'storybook/preview-api';
 
 import { EVENTS, NOTE } from './constants';
 import type { LocalStorageRecord } from './types';

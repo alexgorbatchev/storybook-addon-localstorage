@@ -1,5 +1,5 @@
 import { defineConfig } from 'tsup';
-import { globalPackages } from '@storybook/manager/globals';
+import { globalPackages } from 'storybook/internal/manager/globals';
 
 export default defineConfig((options) => ({
   entry: ['src/index.ts', 'src/manager.tsx', 'src/preset.ts', 'src/preview.ts'],
