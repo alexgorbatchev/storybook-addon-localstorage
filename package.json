@@ -53,6 +53,7 @@
   ],
   "scripts": {
     "storybook": "storybook dev --port 6006",
+    "prepublishOnly": "tsup",
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest"
