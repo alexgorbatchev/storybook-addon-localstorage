@@ -38,6 +38,8 @@
         "default": "./dist/preset.cjs"
       }
     },
+    "./manager": "./dist/manager.js",
+    "./preview": "./dist/preview.js",
     "./package.json": "./package.json"
   },
   "main": "dist/index.js",
