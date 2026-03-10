@@ -1,5 +1,5 @@
 // https://storybook.js.org/docs/addons/writing-presets#managerentries
-export const managerEntries = [import.meta.resolve('./manager')];
+export const managerEntries = ['@alexgorbatchev/storybook-addon-localstorage/manager'];
 
 // https://storybook.js.org/docs/addons/writing-presets#previewannotations
-export const previewAnnotations = [import.meta.resolve('./preview')];
+export const previewAnnotations = ['@alexgorbatchev/storybook-addon-localstorage/preview'];
