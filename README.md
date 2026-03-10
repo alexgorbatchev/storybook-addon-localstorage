@@ -1,6 +1,6 @@
 # Storybook LocalStorage Addon
 
-A [Storybook](https://storybook.js.org/) v8 addon and decorator for mocking and displaying current values of the [`window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) in a Storybook panel
+A [Storybook](https://storybook.js.org/) addon and decorator for mocking and displaying current values of the [`window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) in a Storybook panel
 
 If you want to setup `parameters` to be strongly typed, see [@alexgorbatchev/storybook-parameters](https://github.com/alexgorbatchev/storybook-parameters).
 
@@ -86,7 +86,7 @@ export const JohnLoggedIn: Story = {
 
 export const JaneLoggedIn: Story = {
   parameters: {
-    // if you have own serialzer, you can use it as well
+    // if you have own serializer, you can use it as well
     localStorage: {
       value: '123',
       user: JSON.stringify({ name: 'Jane' }),
@@ -125,4 +125,6 @@ export const JohnLoggedIn: Story = {
 ## Development Scripts
 
 - `npm run storybook` starts Storybook
+- `npm test` runs tests
+- `npm run test:watch` runs tests in watch mode
 - `tsup` build `./dist`
